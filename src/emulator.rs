@@ -121,12 +121,31 @@ impl Emulator {
         self.V[x] |= self.V[y];
     }
 
-    // 8xy1 - AND Vx, Vy
+    // 8xy2 - AND Vx, Vy
     // Set Vx = Vx & Vy.
     fn and_vx_vy(x: u8, y: u8) {
         // ensure that x, y are <= 15
         x &= 0x0F;
         y &= 0x0F;
         self.V[x] &= self.V[y];
+    }
+
+    // 8xy3 - XOR Vx, Vy
+    // Set Vx = Vx ^ Vy.
+    fn xor_vx_vy(x: u8, y: u8) {
+        // ensure that x, y are <= 15
+        x &= 0x0F;
+        y &= 0x0F;
+        self.V[x] ^= self.V[y];
+    }
+
+    // 8xy4 - ADD Vx, Vy
+    // Set Vx = Vx + Vy.
+    // TODO: If the result is greater than 8 bits (> 255), VF is set to 1.
+    fn add_vx_vy(x: u8, y: u8) {
+        // ensure that x, y are <= 15
+        x &= 0x0F;
+        y &= 0x0F;
+        self.V[x] += self.V[y];
     }
 }

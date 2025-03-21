@@ -2,9 +2,9 @@ use crate::types::*;
 use rand::Rng;
 
 /**
- * Emulator struct.
+ * Interpreter struct.
  *
- * Holds all runtime data for the struct.
+ * Holds all runtime data for the interpreter.
  * Contains the following members:
  * - `V`: CHIP-8's 16 8-bit registers, V0-VF. Note that VF doubles
  *   as a flag for some operations, so it should generally be avoided.
@@ -16,7 +16,7 @@ use rand::Rng;
  * - `RAM`: Program memory.
  * - `RNG`: Random number generator.
  */
-pub struct Emulator {
+pub struct Interpreter {
     V:      [u8; 16],
     I:      u16,
     Timers: [u8; 2],
@@ -27,8 +27,8 @@ pub struct Emulator {
     RNG:    rand::rngs::ThreadRng;
 }
 
-impl Emulator {
-    // Create a new Emulator struct
+impl Interpreter {
+    // Create a new Interpreter struct
     pub fn new() -> Self {
         Self {
             V: [0; 16],
